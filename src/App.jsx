@@ -21,6 +21,17 @@ function App() {
             <button onClick={() => deleteProduct(product.id)}>
                 Delete
             </button>
+            <button onClick={() => {
+                // Hiển thị prompt để nhập giá mới
+                const inputPrice = window.prompt("Nhập giá mới:", String(product.price));
+
+                if (inputPrice !== null) {
+                    updateProduct(product.id, parseFloat(inputPrice));
+                }
+                
+            }}>
+                Update
+            </button>
         </div>
     
         
@@ -46,13 +57,33 @@ function addProduct() {
     }
     const newProduct = {
             id:  crypto.randomUUID(), // tạo id mới dựa trên số lượng sản phẩm hiện tại
-            name: name,
-            price: parseFloat(price) // chuyển price từ string sang number
+            name: productName,
+            price: parseFloat(productPrice) // chuyển price từ string sang number
         };
         setProducts(prevProducts => [...prevProducts, newProduct]);
         // Reset lại giá trị của name và price sau khi thêm sản phẩm
         setName("");
         setPrice("");
+}
+
+// cập nhật sản phẩm bằng map()
+function updateProduct(id, newPrice) {
+    const updatedPrice = Number(price);
+    if (updatedPrice === null) {
+        // Người dùng đã hủy prompt
+        return;
+    }
+    setProducts(prevProducts => {
+        return prevProducts.map(product => {
+            if (/* Kiểm tra ID sản phẩm */id === product.id) {
+                // Trả về Object mới với giá đã cập nhật
+                return { ...product, price: newPrice};
+            }
+
+            // Trả về sản phẩm cũ
+            return product;
+        });
+    });
 }
     return(
         <>
@@ -67,7 +98,8 @@ function addProduct() {
         </div>
         
         <input
-            value={name}  // lấy giá trị name từ state
+        {/*// lấy giá trị name từ state*/}
+            value={name}  
             onChange={(e) => setName(e.target.value)} 
         />
         <p>Tên đang nhập: {name}</p>
@@ -77,6 +109,7 @@ function addProduct() {
             onChange={(e) => setPrice(e.target.value)}
         />
         <p>Giá đang nhập: {price}</p>
+
         </>
     )    
 }
