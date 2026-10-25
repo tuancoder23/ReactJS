@@ -1,0 +1,78 @@
+//
+let age = 22;
+age = 23;
+
+const name = "Laptop Dell";
+
+const product = {
+    id: 1,
+    name: "Laptop Dell",
+    price: 20000000
+};
+
+const products = [
+    product,
+    { id: 2, name: "Mouse", price: 500000 }
+];
+// function va arrow function
+function sum(a, b) {
+    return a + b;
+}
+
+const sumArrow = (a, b) => a + b;
+
+console.log(sum(2, 3));
+console.log(sumArrow(2, 3));
+
+// map va filter trong array
+const products = [
+    { id: 1, name: "Laptop", price: 20000000 },
+    { id: 2, name: "Mouse", price: 500000 },
+    { id: 3, name: "Keyboard", price: 1200000 }
+];
+
+const names = products.map(product => product.name);
+
+const filtered = products.filter(
+    product => product.price < 2000000
+);
+
+console.log(names);
+console.log(filtered);
+// Destructuring và Spread Operator
+const product = {
+    id: 1,
+    name: "Laptop",
+    price: 20000000
+};
+
+const { name, price } = product;
+
+const updatedProduct = {
+    ...product,
+    price: 18000000
+};
+
+console.log(name);
+console.log(updatedProduct);
+
+// Promise và async/await
+async function getProducts() {
+    try {
+        const response = await fetch(
+            "https://dummyjson.com/products"
+        );
+
+        if (!response.ok) {
+            throw new Error("Failed to fetch products");
+        }
+
+        const data = await response.json();
+
+        console.log(data.products);
+    } catch (error) {
+        console.error(error.message);
+    }
+}
+
+getProducts();

@@ -31,9 +31,10 @@ button:hover { background: #eee; }
 .product-card { padding: 24px 18px 18px; border: 1px solid #dedede; border-radius: 13px; }
 .product-card h2 { margin: 0 0 21px; font-size: 25px; line-height: 1.25; font-weight: 500; overflow-wrap: anywhere; }
 .product-card p, .empty-message { margin: 0 0 14px; color: #666; font-size: 22px; }
+.total-price { margin: 24px 0 0; font-size: 22px; }
 @media (max-width: 480px) {
   .product-manager { padding: 22px 16px; }
   h1 { font-size: 27px; }
   input { padding-inline: 20px; font-size: 20px; }
-  label, .input-preview, button, .product-card p { font-size: 18px; }
+  label, .input-preview, button, .product-card p, .total-price { font-size: 18px; }
 }
