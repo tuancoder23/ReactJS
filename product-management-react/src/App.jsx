@@ -7,9 +7,25 @@ const initialProducts = [
 
 function App() {
     
-    const [products, setProducts] = useState(initialProducts);
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
+
+    // Đọc dữ liệu khi khởi tạo
+    const [products, setProducts] = useState(() => {
+        const savedProducts = localStorage.getItem("products");
+
+        return savedProducts !== null
+            ? JSON.parse(savedProducts)
+            : initialProducts;
+    });
+
+    // Lưu dữ liệu khi products thay đổi
+    useEffect(() => {
+        localStorage.setItem(
+            "products",
+            JSON.stringify(products)
+        );
+    }, [products]);
 
 
     // Tính tổng giá trị sản phẩm bằng reduce
