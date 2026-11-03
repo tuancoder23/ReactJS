@@ -17,6 +17,8 @@ function App() {
 
     const [count, setCount] = useState(0);
     const [bookList, setBookList] = useState(books);
+    const [isSorted, setIsSorted] = useState(false); // isSorted = fasle
+
 
 
     function handleIncrement() {
@@ -38,17 +40,24 @@ function App() {
         );
     }
     
+    function handleSort(){
+        setIsSorted(pre => !pre);
+    }
+    
+    
+    const displayedBooks = isSorted ? [...bookList].sort((a, b) => a.title.localeCompare(b.title)) : bookList;
 
     return (
         <div>
             <h1>Book List</h1>
-            <BookList books={bookList} handleToggleFavorite={handleToggleFavorite} deleteBook={deleteBook} />
+            <BookList books={displayedBooks} handleToggleFavorite={handleToggleFavorite} deleteBook={deleteBook} />
             <h2>Favorite Books</h2>
             <FavoriteBookList books={bookList}/>
             <h1>Counter</h1>
             <p>Count: {count}</p>
             <CounterButton onPress={handleIncrement} label="Increment" />
             <CounterButton onPress={handleDecrement} label="Decrement" />
+            <button onClick={() => handleSort()}>Nút bật/tắt sắp xếp</button>  
         </div>
     );
     
