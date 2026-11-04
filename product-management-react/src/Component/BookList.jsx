@@ -1,6 +1,6 @@
 import BookCard from "./BookCard.jsx";
 export default BookList;
-function BookList({ books, handleToggleFavorite, deleteHandleBook }) {
+function BookList({ books, handleToggleFavorite, deleteBook }) {
     return (
         <div>
             {books.map(book => (
