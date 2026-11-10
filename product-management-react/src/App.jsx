@@ -1,8 +1,10 @@
-import { useState } from "react";
-import CounterButton from "./Component/CounterButton.jsx";
+import { useState,useEffect } from "react";
 import BookList from "./Component/BookList.jsx";
 import FavoriteBookList from "./Component/FavoriteBookList.jsx";
-
+import AddBookForm from "./Component/AddBookForm.jsx";
+import SearchBar from "./Component/SearchBar.jsx";
+import SortButton from "./Component/SortButton.jsx";
+import BookStats from "./Component/BookStats.jsx";
 
 const books = [
   { id: 1, title: "Clean Code", author: "Robert C. Martin", favorite: false },
@@ -15,19 +17,33 @@ const books = [
 
 function App() {
 
-    const [count, setCount] = useState(0);
-    const [bookList, setBookList] = useState(books);
+    
+    const [bookList, setBookList] = useState(() => {
+        const savedBooks = localStorage.getItem("book-list");
+
+        if(savedBooks !== null){
+            return JSON.parse(savedBooks);
+        }
+        return books;
+    });
     const [isSorted, setIsSorted] = useState(false); // isSorted = fasle
     const [search,setSearch] = useState("");
 
 
 
-    function handleIncrement() {
-        setCount(count + 1);
+    useEffect(() => {
+        localStorage.setItem(
+            "book-list",JSON.stringify(bookList)
+        );
+    },[bookList]);
+
+
+    function handleAddBook(newBook){
+        setBookList(bookList => [...bookList,newBook]);
+        
     }
-    function handleDecrement() {
-        setCount(count - 1);
-    }
+
+    
     function handleToggleFavorite(id) {
         setBookList(prevBookList =>
             prevBookList.map(book =>
@@ -46,8 +62,8 @@ function App() {
     }
 
     function searchBook(bookList, search){
-        return bookList.filter(book => book.title.toLowerCase().includes(search.tim().toLowerCase()));
-    }
+        return bookList.filter(book => book.title.toLowerCase().includes(search.trim().toLowerCase()));
+    } 
 
     const searchedBooks = searchBook(bookList, search);
 
@@ -63,13 +79,11 @@ function App() {
 
             )}
             <h2>Favorite Books</h2>
-            <FavoriteBookList books={bookList}/>
-            <h1>Counter</h1>
-            <p>Count: {count}</p>
-            <CounterButton onPress={handleIncrement} label="Increment" />
-            <CounterButton onPress={handleDecrement} label="Decrement" />
-            <button onClick={() => handleSort()}>Nút bật/tắt sắp xếp</button>
-            <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search books"/>  
+            <FavoriteBookList books={bookList}/>  
+            <SortButton isSorted={isSorted} onToggleSort={handleSort} />
+            <SearchBar search={search} onSearchChange={setSearch}/>
+            <AddBookForm onAddBook={handleAddBook} />
+            <BookStats books={bookList}/>
         </div>
     );
     
