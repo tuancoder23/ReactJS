@@ -1,8 +1,15 @@
+
 import BookCard from "./BookCard.jsx";
-export default BookList;
-function BookList({ books, handleToggleFavorite, deleteBook }) {
+import styles from "./BookList.module.css";
+
+function BookList({
+    books,
+    onUpdateBook,
+    handleToggleFavorite,
+    deleteBook
+}) {
     return (
-        <div>
+        <div className={styles.grid}>
             {books.map(book => (
                 <BookCard
                     key={book.id}
@@ -12,8 +19,11 @@ function BookList({ books, handleToggleFavorite, deleteBook }) {
                     favorite={book.favorite}
                     handleToggleFavorite={handleToggleFavorite}
                     deleteBook={deleteBook}
+                    onUpdateBook={onUpdateBook}
                 />
             ))}
         </div>
     );
 }
+
+export default BookList;

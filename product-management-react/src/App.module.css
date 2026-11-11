@@ -1,0 +1,200 @@
+﻿.page {
+  min-height: 100vh;
+  padding: 32px 20px 56px;
+  background: #f5f7fb;
+  color: #172033;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: #4f46e5;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1.2;
+}
+
+.subtitle {
+  margin: 8px 0 0;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.bookCount {
+  padding: 8px 14px;
+  border: 1px solid #c7d2fe;
+  border-radius: 999px;
+  background: #eef2ff;
+  color: #4338ca;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.toolbar {
+  display: flex;
+  align-items: end;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: 18px;
+  margin-bottom: 22px;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  background: #fff;
+}
+
+.toolbar>* {
+  flex: 1 1 180px;
+  min-width: 0;
+}
+
+.toolbar :global(input),
+.toolbar :global(select) {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #fff;
+  color: #172033;
+  font: inherit;
+}
+
+.toolbar :global(button) {
+  padding: 10px 14px;
+  border: 1px solid #c7d2fe;
+  border-radius: 8px;
+  background: #eef2ff;
+  color: #4338ca;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.toolbar :global(input:focus-visible),
+.toolbar :global(select:focus-visible),
+.toolbar :global(button:focus-visible) {
+  outline: 3px solid #c7d2fe;
+  outline-offset: 2px;
+}
+
+.mainLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.panel {
+  min-width: 0;
+  padding: 22px;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 6px 22px rgba(15, 23, 42, 0.04);
+}
+
+.sectionHeader {
+  margin-bottom: 18px;
+}
+
+.sectionTitle {
+  margin: 0 0 14px;
+  font-size: 20px;
+  line-height: 1.3;
+}
+
+.sideColumn {
+  display: grid;
+  gap: 18px;
+  align-content: start;
+}
+
+.sideColumn :global(h2) {
+  margin-top: 0;
+}
+
+.formPanel :global(form) {
+  display: grid;
+  gap: 10px;
+}
+
+.formPanel :global(input),
+.formPanel :global(select) {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  color: #172033;
+  background: #fff;
+  font: inherit;
+}
+
+.formPanel :global(button) {
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 8px;
+  background: #4f46e5;
+  color: white;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.formPanel :global(button[type="button"]) {
+  background: #e2e8f0;
+  color: #334155;
+}
+
+.emptyState {
+  padding: 36px 16px;
+  border: 1px dashed #cbd5e1;
+  border-radius: 12px;
+  color: #64748b;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .mainLayout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .page {
+    padding: 20px 12px 36px;
+  }
+
+  .panel {
+    padding: 16px;
+  }
+
+  .toolbar {
+    padding: 14px;
+  }
+
+  .toolbar>* {
+    flex-basis: 100%;
+  }
+}

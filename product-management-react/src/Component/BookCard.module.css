@@ -1,0 +1,21 @@
+.card {
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.author {
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.actions {
+    font-size: 10px;
+    font-weight: 200;
+}
